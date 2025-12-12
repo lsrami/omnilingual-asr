@@ -17,6 +17,7 @@ from omnilingual_asr.models.wav2vec2_llama import (
     WAV2VEC2_LLAMA_FAMILY,
     Wav2Vec2LlamaConfig,
     Wav2Vec2LlamaModel,
+    apply_fsdp_to_wav2vec2_llama,
     convert_wav2vec2_llama_state_dict,
     create_wav2vec2_llama_model,
     register_wav2vec2_llama_configs,
@@ -51,6 +52,7 @@ def _register_models(container: DependencyContainer) -> None:
         kls=Wav2Vec2LlamaModel,
         config_kls=Wav2Vec2LlamaConfig,
         factory=create_wav2vec2_llama_model,
+        fsdp_applier=apply_fsdp_to_wav2vec2_llama,
         state_dict_converter=convert_wav2vec2_llama_state_dict,
     )
 
